@@ -192,7 +192,7 @@ Now you are ready to raise your EEPR in Amadeus!
 
 ###Pull requests
 
-####Raising new pull request via command line
+####Raising new pull request
 It is usual, that bigger teams have to organise their contributions via multiple branches. Before taging final product to be sent down the pipeline, team has to merge all changes from all relevant branches. To have an overview and control over merge process, it is usual to have main coordinator (head of team perhaps?) responsible for merging all the code. From developer perspective, this is best to be done via raising a pull request. This way responsible role in the team knows, that developer finished his part of contribution.
 
 Let's assume, that we just pushed **love** branch to main server.
