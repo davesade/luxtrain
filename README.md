@@ -1,9 +1,11 @@
 Welcome to the train in direction Luxembourg - GitHub
 ===========================
+[TOC]
+
 Starting from the scratch
 -----------------------------------
 
-#### <i class="icon-folder-open"></i> Create new folder
+### <i class="icon-folder-open"></i> Create new folder
 There are few ways, how to start with Git. Let's have simplest possible example. You would like to start with brand new, merely empty repository. Best is to start locally on your PC, with GIT installed. Let's move to safe area, where we can prepare folder for our new repository.
 
 ```
@@ -68,8 +70,8 @@ To https://github.com/davesade/luxtrain
 ```
 Congratulations, you just pushed your first commit!
 
-Starting from existing repository on a server
-------------------------------------------------------------
+###Starting from existing repository on a server
+
 With Git, you work with complete branch of repository on your local PC - that's why it's called **distributed version control system**. So easiest way to start contributing to existing project is to fetch it from a server. Let's repeat our routine.
 ```
 mkdir luxtrain
@@ -118,7 +120,7 @@ If you wish to set tracking information for this branch you can do so with:
 
 Branching
 --------------
-
+###Basics
 With branches, you can organise your work in case you have to synchronise with more colleagues contributing to the same project. You can create new branch at any time by typing:
 ```
 git branch love
@@ -142,8 +144,7 @@ Each team should come up with his own strategy on branching. Actually, you can't
 ```
 git branch love -d
 ```
-Taging
----------
+###Taging
 Now we know how to start working in our local repository, how to do branching and how to push our branches to main server. At one point of time, we would like to ask CFM to actually pick our work and send it to the pipeline for further testing and deployment, up to production. To do that, you have to provide a **tag**, which is equivalent of **label** in Clearcase. To add a new tag, type following command.
 ```
 git tag -a v.0.2 -m "Please test this in production"
@@ -182,4 +183,26 @@ To https://www.github.com/davesade/luxtrain
 ```
 >**Tip:** You cannot create a tag via webgui of GitHub Enterprise.
 
+If you would like to remove a tag, just type in:
+```
+git tag [tag_name] -d
+-> Deleted tag [tag_name] (was 4f0c35b)
+```
 Now you are ready to raise your EEPR in Amadeus!
+
+###Pull requests
+
+####Raising new pull request via command line
+It is usual, that bigger teams have to organise their contributions via multiple branches. Before taging final product to be sent down the pipeline, team has to merge all changes from all relevant branches. To have an overview and control over merge process, it is usual to have main coordinator (head of team perhaps?) responsible for merging all the code. From developer perspective, this is best to be done via raising a pull request. This way responsible role in the team knows, that developer finished his part of contribution.
+
+Let's assume, that we just pushed **love** branch to main server.
+```
+git push origin love
+```
+Now have a look at your repository via web browser, you will notice new button for raising pull request. Select **master** as a base and compare it with **love**. GitHub will show you difference, allow you to write comment and start discussion.
+>**IMPORTANT:** Using pull requests in GitHub has a form of actual discussion about changes you would like to merge with main branch. Use this opportunity to ask colleagues for opinion, help or review. Use @mentions to reach other people from totally different projects, to have them contributing into your work.
+>**IMPORTANT:** While Git does offer pull request command as well, it serves merely as a check for potential merge. It seems to be not possible to raise pull request for GitHub via command line interface of Git.
+
+When discussion is over, you may integrate some suggestions, comment or mention open issues by addin #numbers as well. When everything seems to be alright, it is time to move to the next step.
+####Accepting pull request - merge
+Responsible person now has to accept your merge request or deal with potential conflict.
