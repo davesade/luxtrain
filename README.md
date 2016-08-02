@@ -1,11 +1,9 @@
 Welcome to the train in direction Luxembourg - GitHub
 ===========================
-[TOC]
 
-Starting from the scratch
------------------------------------
+###Starting from the scratch
 
-### <i class="icon-folder-open"></i> Create new folder
+#### <i class="icon-folder-open"></i> Create new folder
 There are few ways, how to start with Git. Let's have simplest possible example. You would like to start with brand new, merely empty repository. Best is to start locally on your PC, with GIT installed. Let's move to safe area, where we can prepare folder for our new repository.
 
 ```
@@ -27,39 +25,40 @@ git add help.txt
 Next we have to commit our changes, to really let Git know, that our work with help.txt file is done.
 ```
 git commit -m "First commit"
--> [master (root-commit) c032da3] First commit
+ [master (root-commit) c032da3] First commit
  1 file changed, 1 insertion(+)
  create mode 100644 help.txt
 ```
 >**Tip:** Consider commit messages as important part of your workflow. It WILL greatly help, when tracking changes in the past.
 
 #### <i class="icon-upload"></i> Publish a document
-Let's say we are happy with out work, so it's time to publish our work on main server. To do that, we have to add remote location. In our example, let's use public GitHub.com, but it works the same also for GitHubEnterprise.
+Let's say we are happy with out work, so it's time to publish our work on main server. To do that, we have to add remote location, by default called **origin**. In our example, let's use public GitHub.com, but it works the same also for GitHubEnterprise.
 
 ```
 git remote add origin https://github.com/davesade/luxtrain
 ```
 >**Tip:** In Git vocabulary, "origin" indicates default place for your future commits, which is shared by whole team usually. You can have multiple remotes set by the way, if you push your code to multiple servers, i.e. Heroku Git.
 
+>**IMPORTANT:** You have to prepare empty repository on server in advance! That is usually not a big deal and if you follow instructions on webgui properly, it will actually show you all commands you have to do on your workstation, to push data from your local PC.
+
 Last thing to do is actually to push our changes. That follow this syntax:
 ```
 git push [remote] [branch]
 ```
-Branch? What is branch? It is important part of your development strategy and we will talk about it later. To make it simple now, let' continue. In case you are not sure, you can simply list all branches in your repository. By default, you should see a master branch.
+Branch? What is a branch? It is important part of your development strategy and we will talk about it later. To make it simple now, let's continue. In case you are not sure, you can simply list all branches in your repository. By default, you should see a master branch.
 ```
 git branch
-->*master
+*master
 ```
 Asterix indicates your current branch. In case you have too many branches to look around, you can use also status command:
 ```
 git status
-->On branch master
+On branch master
 nothing to commit, working directory clean
 ```
 Alright, so finally now we can push our work to the server!
 ```
 git push origin master
-->
 Username for 'https://github.com': davesade.42@gmail.com
 Password for 'https://davesade.42@gmail.com@github.com': 
 Counting objects: 3, done.
@@ -72,7 +71,20 @@ Congratulations, you just pushed your first commit!
 
 ###Starting from existing repository on a server
 
-With Git, you work with complete branch of repository on your local PC - that's why it's called **distributed version control system**. So easiest way to start contributing to existing project is to fetch it from a server. Let's repeat our routine.
+With Git, you **ALWAYS** work with complete branch of repository on your local PC - that's why it's called **distributed version control system**. So easiest way to start contributing to existing project is to clone it from a server. Let's do it right now!
+```
+git clone https://github.com/davesade/luxtrain
+Cloning into 'luxtrain'...
+remote: Counting objects: 37, done.
+remote: Compressing objects: 100% (31/31), done.
+remote: Total 37 (delta 4), reused 20 (delta 1), pack-reused 0
+Unpacking objects: 100% (37/37), done.
+Checking connectivity... done.
+```
+As you can see, this command created a folder and fetched all necessary data, complete repository, all files, all branches and tags.
+
+Alternatively, you could do a **fetch** from remote repository. This implies, that you will add remote origin manually, which might be usefull in a case you work with multiple servers (ie. GitHub and HerokuGit). The **origin** is usually single common place share by all developers in the team, where they contribute to.
+
 ```
 mkdir luxtrain
 cd luxtrain
@@ -86,13 +98,7 @@ Unpacking objects: 100% (12/12), done.
 From https://github.com/davesade/luxtrain
  * [new branch]      master     -> origin/master
 ```
-From this point on however, we got information for Git, but no files on our filesystem. This is recommended in case you already know in advance, that you will work only on specific branch. There is only one branch currently, master. To switch the branch, use checkout command. Now it will look like this:
-```
-git checkout master
-->Branch master set up to track remote branch master from origin.
-Already on 'master'
-```
-Alternatively, we could simply **pull** from remote repository. The difference is, that this will not onluy **fetch** as in example above, but also to **merge** with your current folder. Depending on what you want, this might be better in some cases.
+Last but not least, we could simply **pull** from remote repository. The difference is, that this will not only **fetch** as in example above, but also to **merge** with your current folder. Depending on what you want, this might be better in some cases.
 
 ```
 mkdir luxtrain
@@ -100,7 +106,6 @@ cd luxtrain
 git init
 git remote add origin https://github.com/davesade/luxtrain
 git pull
--> 
 remote: Counting objects: 12, done.
 remote: Compressing objects: 100% (8/8), done.
 remote: Total 12 (delta 0), reused 6 (delta 0), pack-reused 0
@@ -117,15 +122,15 @@ If you wish to set tracking information for this branch you can do so with:
 
     git branch --set-upstream-to=origin/<branch> master
 ```
+But generally speaking, **clone** will cover most of your use cases.
 
-Branching
---------------
-###Basics
+###Branching
+####Basics
 With branches, you can organise your work in case you have to synchronise with more colleagues contributing to the same project. You can create new branch at any time by typing:
 ```
 git branch love
 git branch
-->love
+  love
 * master
 git checkout love
 git branch
@@ -133,7 +138,13 @@ git branch
   master
 ```
 Now you are ready to work in your **love** branch, without being afraid of interrupting your colleagues working on different features.
->**Tip:** There is no simple winning strategy about branching. GitHub workflow is heavily relying on a fact, that each developer commits to it's own branch, push it into main server and then raise a pull request. In case of small changes or quick bugfixes, you might easily delete a branch, after you fix your issue (typically SIRE fixes), however in case of feature branches, it is recommended to keep it for easier tracking.
+
+There is actually faster way of creating branch. When you are checking out a branch which doesn't exists, you can add **-b** to create a branch, based on another branch you name, typically master.
+```
+git checkout -b love master
+```
+
+>**Tip:** There is no simple winning strategy about branching. GitHub workflow is heavily relying on a fact, that each developer commits to it's own branch, push it into main branch (master or main feature branch) and then raise a pull request. In case of small changes or quick bugfixes, you might easily delete a branch, after you fix your issue (typically SIR fixes), however in case of feature branches, it is recommended to keep it for easier tracking.
 
 Do not forget to commit and push your changes, when you are done working:
 ```
