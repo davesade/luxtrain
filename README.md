@@ -67,11 +67,11 @@ Total 3 (delta 0), reused 0 (delta 0)
 To https://github.com/davesade/luxtrain
  * [new branch]      master -> master
 ```
-Congratulations, you just pushed your first commit!
+**Congratulations**, you just pushed your first commit!
 
 ###Starting from existing repository on a server
 
-With Git, you **ALWAYS** work with complete branch of repository on your local PC - that's why it's called **distributed version control system**. So easiest way to start contributing to existing project is to clone it from a server. Let's do it right now!
+With Git, you **ALWAYS** work with complete repository, even on your local PC - that's why it's called **distributed version control system**. There is usually single point of place - main server - where project is being held, which is then shared between many developers, pushing their contributions to remote origin. So easiest way to start contributing to existing project is to **clone** it from a server. Let's do it right now!
 ```
 git clone https://github.com/davesade/luxtrain
 Cloning into 'luxtrain'...
@@ -144,10 +144,11 @@ There is actually faster way of creating branch. When you are checking out a bra
 git checkout -b love master
 ```
 
->**Tip:** There is no simple winning strategy about branching. GitHub workflow is heavily relying on a fact, that each developer commits to it's own branch, push it into main branch (master or main feature branch) and then raise a pull request. In case of small changes or quick bugfixes, you might easily delete a branch, after you fix your issue (typically SIR fixes), however in case of feature branches, it is recommended to keep it for easier tracking.
+>**Tip:** There is no single winning strategy about branching. GitHub workflow is heavily relying on a fact, that each developer commits to it's own branch, push it into main branch (master or main feature branch) and then raise a pull request. In case of small changes or quick bugfixes, you might easily delete a branch, after you fix your issue (typically SIR fixes), however in case of feature branches, it is recommended to keep it for easier tracking.
 
-Do not forget to commit and push your changes, when you are done working:
+Do not forget to add and commit and push your changes, when you are done working:
 ```
+git add .
 git commit -m "Second commit"
 git push origin love
 ```
@@ -199,21 +200,23 @@ If you would like to remove a tag, just type in:
 git tag [tag_name] -d
 -> Deleted tag [tag_name] (was 4f0c35b)
 ```
-Now you are ready to raise your EEPR in Amadeus!
+And if you need to remove a tag from remote origin, type this:
+```
+git push --delete origin [tag_name]
+```
+Now you are ready to raise your **EEPR** in Amadeus, as CFM expects **tag** indicating unchangable point in time for their pipeline.
 
 ###Pull requests
 
 ####Raising new pull request
-It is usual, that bigger teams have to organise their contributions via multiple branches. Before taging final product to be sent down the pipeline, team has to merge all changes from all relevant branches. To have an overview and control over merge process, it is usual to have main coordinator (head of team perhaps?) responsible for merging all the code. From developer perspective, this is best to be done via raising a pull request. This way responsible role in the team knows, that developer finished his part of contribution.
+It is usual, that bigger teams have to organise their contributions via multiple branches. Before taging final product to be sent down the pipeline, team has to merge all changes from all relevant branches. To have an overview and control over merge process, it is usual to have main coordinator (head of team perhaps?) responsible for merging all the code (however developer might be responsible for fixing the conflict). From developer perspective, this is best to be done via raising a pull request. This way developer says: "My work is done, everything is on the server, please merge it into master or main feature branch".
 
 Let's assume, that we just pushed **love** branch to main server.
 ```
 git push origin love
 ```
 Now have a look at your repository via web browser, you will notice new button for raising pull request. Select **master** as a base and compare it with **love**. GitHub will show you difference, allow you to write comment and start discussion.
->**IMPORTANT:** Using pull requests in GitHub has a form of actual discussion about changes you would like to merge with main branch. Use this opportunity to ask colleagues for opinion, help or review. Use @mentions to reach other people from totally different projects, to have them contributing into your work.
->**IMPORTANT:** While Git does offer pull request command as well, it serves merely as a check for potential merge. It seems to be not possible to raise pull request for GitHub via command line interface of Git.
+>**IMPORTANT:** Using pull requests in GitHub has a form of actual discussion about changes you would like to merge. Use this opportunity to ask colleagues for opinion, help or review. Use @mentions to reach other people from totally different projects, to have them contributing into your work. Use #numbers to relate your changes to existing GitHub issues. Consider this as cultural thing, to show your work publicly, to share and exchange ideas. Obviously there might be smaller teams, which are going to commit directly to master branch or maybe they will merge their own pull requests in case of minor changes.
+>**IMPORTANT:** While Git does offer pull request command as well, it serves merely as a check for potential merge. It is to be not possible to raise pull request for GitHub via command line interface of Git. Pull requests are in this sense purely function of GitHub, where you have to use webgui.
 
-When discussion is over, you may integrate some suggestions, comment or mention open issues by addin #numbers as well. When everything seems to be alright, it is time to move to the next step.
-####Accepting pull request - merge
-Responsible person now has to accept your merge request or deal with potential conflict.
+There might be situation to refuse the pull request. Simply click on **close** button.
