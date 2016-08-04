@@ -19,7 +19,11 @@ Training instructions for GitHub (Enterprise)
 ###<a name="fromScratch"></a>Starting from Scratch
 
 #### Installing Git
-TODO
+* Where to get installation files
+* How do set the proxy:
+```
+git config --global http.proxy http://webproxy.deutsche-boerse.de:8080
+```
 
 #### Create a new folder
 There are a few ways how to start with Git and we will first have a look at the simplest possible example. In fact, we would like to start with brand new merely empty repository locally on your PC where Git is installed. Let's move to safe area, where we can prepare a folder for our new repository.
