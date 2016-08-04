@@ -1,16 +1,16 @@
 Training instructions for GitHub (Enterprise)
 ===========================
 
-###Contents:
+##Contents:
 * [Git Overview](#gitOverview)
 * [Starting from Scratch](#fromScratch)
 * [Starting from existing repository on a server](#startingWithExisting)
 * [Branching](#branching)
 * [Tagging](#tagging)
 * [Pull Requests](#pullRequests)
-* [Literature](#literature)
+* [Important Literature](#literature)
 
-###<a name="gitOverview"></a>Git Overview
+##<a name="gitOverview"></a>Git Overview
 
 * Git in a nutshell
 ** Explain Master/Origin
@@ -20,7 +20,7 @@ Training instructions for GitHub (Enterprise)
 * Gitflow-Workflow
 * For regulatory reasons, all old code will be available on Clearcase for at least the next 10+ years
 
-###<a name="fromScratch"></a>Starting from Scratch
+##<a name="fromScratch"></a>Starting from Scratch
 
 #### Installing Git
 * Where to get installation files
@@ -150,7 +150,7 @@ If you wish to set tracking information for this branch you can do so with:
 ```
 But generally speaking, **clone** will cover most of your use cases.
 
-###<a name="branching"></a>Branching
+##<a name="branching"></a>Branching
 ####Basics
 With branches, you can organise your work in case you have to synchronise with more colleagues that are contributing to the same project. You can create new branch at any time by typing:
 ```
@@ -186,7 +186,7 @@ Each team should come up with its own strategy on branching. In case you would l
 ```
 git branch love -d
 ```
-###<a name="tagging"></a>Taging
+##<a name="tagging"></a>Taging
 Now we know how to start working in our local repository, how to do branching and how to push our branches to main server. At one point of time, we would like to ask CFM to actually pick our work and send it to the pipeline for further testing and deployment, up to production. To do that, you have to provide a **tag**, which is the equivalent of a **label** in Clearcase. To add a new tag, type the following command:
 ```
 git tag -a v.0.2 -m "Please test this in production"
@@ -236,7 +236,7 @@ git push --delete origin [tag_name]
 ```
 Now you are ready to raise your **EEPR** in Amadeus. CFM expects a **tag** indicating an unchangable point in time (revision) for their pipeline.
 
-###<a name="pullRequests"></a>Pull requests
+##<a name="pullRequests"></a>Pull requests
 
 ####Raising new pull request
 It is not uncommon that bigger teams have to organise their contributions using multiple branches. Before taging the final product to be sent down the pipeline, teams have to merge all changes from all relevant branches. To have an overview and control over the merge process, it is usual to have a main coordinator (e.g. head of team) which is responsible for merging all the code while the developer might be responsible for fixing the conflict. From developer perspective, this is best to be done by raising a pull request. This way developer the says: "My work is done, everything is on the server, please merge it into master or main feature branch".
@@ -245,12 +245,24 @@ Let's assume, that we just pushed the **love** branch to main server.
 ```
 git push origin love
 ```
-Now have a look at your repository via web browser, you will notice a new button for raising pull request. Select **master** as a base and compare it with **love**. GitHub will show you differences and allows you to write a comment and start discussion.
+Now have a look at your repository via web browser, you will notice a new button for raising pull request. 
+
+<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/pull_love.png" width="300">
+
+Select **master** as a base and compare it with **love**. GitHub will show you differences and allows you to write a comment and start discussion.
+
+<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/pull_love_2.png" width="300">
+<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/pull_love_3.png" width="300">
+
 >**IMPORTANT:** Pull requests in GitHub should be close to an actual discussion about the changes you would like to merge. Use this opportunity to ask colleagues for opinions, help or review. Use @mentions to reach other people from totally different projects in order to have them contributing into your work. Use #numbers to relate your changes to existing GitHub issues. Consider this as cultural thing, to show your work publicly and to share and exchange ideas. Obviously there might be smaller teams, which are going to commit directly to the master branch or maybe they will merge their own pull requests in case of minor changes.
 >**IMPORTANT:** While Git does offer a pull request command as well, it serves merely as a check for potential merges. It is simply not possible to raise pull request for GitHub via the command line interface of Git. Pull requests are a dedicated feature of GitHub, where you have to use the webgui.
 
-There might be situation to refuse the pull request. Simply click on **close** button in these cases.
+There might be situation to refuse the pull request. Simply click on the **close** button in these cases.
 
-###<a name="literature"></a>Literature
+Last but not least, if a branch is no longer needed, you can delete it via the webgui or the command line.
 
-* https://www.atlassian.com/git/tutorials/comparing-workflows/
+<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/pull_love_4.png" width="300">
+
+##<a name="literature"></a>Important Literature
+* https://www.atlassian.com/git/tutorials/what-is-git __(For every topic covered here, a more detailed explanation can be found here)__
+* https://www.atlassian.com/git/tutorials/comparing-workflows/ __(Really recommanded!)__
