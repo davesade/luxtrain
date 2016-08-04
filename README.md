@@ -1,7 +1,15 @@
-Welcome to the train in direction Luxembourg - GitHub
+Training instructions for GitHub (EE)
 ===========================
 
-###Starting from the scratch
+###Contents:
+
+[Starting from Scratch](#fromScratch)
+[Starting from existing repository on a server](#startingWithExisting)
+[Branching](#branching)
+[Tagging](#tagging)
+[Pull Requests](#pullRequests)
+
+###<a name="fromScratch"></a>Starting from Scratch
 
 #### <i class="icon-folder-open"></i> Create new folder
 There are few ways, how to start with Git. Let's have simplest possible example. You would like to start with brand new, merely empty repository. Best is to start locally on your PC, with GIT installed. Let's move to safe area, where we can prepare folder for our new repository.
@@ -69,7 +77,7 @@ To https://github.com/davesade/luxtrain
 ```
 **Congratulations**, you just pushed your first commit!
 
-###Starting from existing repository on a server
+###<a name="startingWithExisting"></a>Starting from existing repository on a server
 
 With Git, you **ALWAYS** work with complete repository, even on your local PC - that's why it's called **distributed version control system**. There is usually single point of place - main server - where project is being held, which is then shared between many developers, pushing their contributions to remote origin. So easiest way to start contributing to existing project is to **clone** it from a server. Let's do it right now!
 ```
@@ -124,7 +132,7 @@ If you wish to set tracking information for this branch you can do so with:
 ```
 But generally speaking, **clone** will cover most of your use cases.
 
-###Branching
+###<a name="branching"></a>Branching
 ####Basics
 With branches, you can organise your work in case you have to synchronise with more colleagues contributing to the same project. You can create new branch at any time by typing:
 ```
@@ -156,7 +164,7 @@ Each team should come up with his own strategy on branching. Actually, you can't
 ```
 git branch love -d
 ```
-###Taging
+###<a name="tagging"></a>Taging
 Now we know how to start working in our local repository, how to do branching and how to push our branches to main server. At one point of time, we would like to ask CFM to actually pick our work and send it to the pipeline for further testing and deployment, up to production. To do that, you have to provide a **tag**, which is equivalent of **label** in Clearcase. To add a new tag, type following command.
 ```
 git tag -a v.0.2 -m "Please test this in production"
@@ -206,7 +214,7 @@ git push --delete origin [tag_name]
 ```
 Now you are ready to raise your **EEPR** in Amadeus, as CFM expects **tag** indicating unchangable point in time for their pipeline.
 
-###Pull requests
+###<a name="pullRequests"></a>Pull requests
 
 ####Raising new pull request
 It is usual, that bigger teams have to organise their contributions via multiple branches. Before taging final product to be sent down the pipeline, team has to merge all changes from all relevant branches. To have an overview and control over merge process, it is usual to have main coordinator (head of team perhaps?) responsible for merging all the code (however developer might be responsible for fixing the conflict). From developer perspective, this is best to be done via raising a pull request. This way developer says: "My work is done, everything is on the server, please merge it into master or main feature branch".
