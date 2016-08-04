@@ -1,4 +1,4 @@
-Training instructions for GitHub (EE)
+Training instructions for GitHub (Enterprise)
 ===========================
 
 ###Contents:
