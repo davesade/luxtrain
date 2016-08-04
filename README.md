@@ -2,17 +2,27 @@ Training instructions for GitHub (Enterprise)
 ===========================
 
 ###Contents:
-
+* [Git Overview](#gitOverview)
 * [Starting from Scratch](#fromScratch)
 * [Starting from existing repository on a server](#startingWithExisting)
 * [Branching](#branching)
 * [Tagging](#tagging)
 * [Pull Requests](#pullRequests)
+* [Literature](#literature)
+
+###<a name="gitOverview"></a>Git Overview
+
+* Git in a nutshell
+* Explain difference between REL and DEV organization
+* Show branching example and why it is useful
 
 ###<a name="fromScratch"></a>Starting from Scratch
 
-#### <i class="icon-folder-open"></i> Create new folder
-There are few ways, how to start with Git. Let's have simplest possible example. You would like to start with brand new, merely empty repository. Best is to start locally on your PC, with GIT installed. Let's move to safe area, where we can prepare folder for our new repository.
+#### Installing Git
+TODO
+
+#### Create a new folder
+There are a few ways how to start with Git and we will first have a look at the simplest possible example. In fact, we would like to start with brand new merely empty repository locally on your PC where Git is installed. Let's move to safe area, where we can prepare a folder for our new repository.
 
 ```
 mkdir luxtrain
@@ -228,3 +238,7 @@ Now have a look at your repository via web browser, you will notice new button f
 >**IMPORTANT:** While Git does offer pull request command as well, it serves merely as a check for potential merge. It is to be not possible to raise pull request for GitHub via command line interface of Git. Pull requests are in this sense purely function of GitHub, where you have to use webgui.
 
 There might be situation to refuse the pull request. Simply click on **close** button.
+
+###<a name="literature"></a>Literature
+
+* https://www.atlassian.com/git/tutorials/comparing-workflows/
