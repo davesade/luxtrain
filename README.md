@@ -15,9 +15,11 @@ Training instructions for GitHub (Enterprise)
 
 * Git in a nutshell
  * Explain Master/Origin
+ * <img src="https://github.com/jeromewagener/luxtrain/blob/master/diagrams/OriginRemote.png" width="300">
  * Explain difference between REL and DEV organization
  * Right now, on REL repositories for all projects already exist, but are empty. These empty repositories are then forked to dev where they have to be populated with the files from your Clearcase LATEST branch. Once this is done, you can push the files to the DEV. With the next EPR, the code is then copied (pulled) to REL.
 * Show branching example and why it is useful
+ * <img src="https://github.com/jeromewagener/luxtrain/blob/master/diagrams/branching.png" width="300"> 
 * Gitflow-Workflow
 
 ##<a name="fromScratch"></a>Starting from Scratch
@@ -269,7 +271,7 @@ There might be situation to refuse the pull request. Simply click on the **close
 
 Last but not least, if a branch is no longer needed, you can delete it via the webgui or the command line.
 
-<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/pull_love_4.png" width="300">
+<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/pull_love_4.png" width="500">
 
 ##<a name="migrationNotes"></a>Migration Notes
 * All old/existing code will remain on Clearcase for at least another ten years. This way you can always go back to check what exactly happened before the migration.
