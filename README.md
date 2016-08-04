@@ -3,11 +3,11 @@ Training instructions for GitHub (EE)
 
 ###Contents:
 
-[Starting from Scratch](#fromScratch)
-[Starting from existing repository on a server](#startingWithExisting)
-[Branching](#branching)
-[Tagging](#tagging)
-[Pull Requests](#pullRequests)
+* [Starting from Scratch](#fromScratch)
+* [Starting from existing repository on a server](#startingWithExisting)
+* [Branching](#branching)
+* [Tagging](#tagging)
+* [Pull Requests](#pullRequests)
 
 ###<a name="fromScratch"></a>Starting from Scratch
 
