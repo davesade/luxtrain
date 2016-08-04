@@ -8,23 +8,31 @@ Training instructions for GitHub (Enterprise)
 * [Branching](#branching)
 * [Tagging](#tagging)
 * [Pull Requests](#pullRequests)
+* [Migration Notes](#migrationNotes)
 * [Important Literature](#literature)
 
 ##<a name="gitOverview"></a>Git Overview
 
 * Git in a nutshell
-** Explain Master/Origin
-* Explain difference between REL and DEV organization
-** Right now, on REL repositories for all projects already exist, but are empty. These empty repositories are then forked to dev where they have to be populated with the files from your Clearcase LATEST branch. Once this is done, you can push the files to the DEV. With the next EPR, the code is then copied (pulled) to REL.
+ * Explain Master/Origin
+ * Explain difference between REL and DEV organization
+ * Right now, on REL repositories for all projects already exist, but are empty. These empty repositories are then forked to dev where they have to be populated with the files from your Clearcase LATEST branch. Once this is done, you can push the files to the DEV. With the next EPR, the code is then copied (pulled) to REL.
 * Show branching example and why it is useful
 * Gitflow-Workflow
-* For regulatory reasons, all old code will be available on Clearcase for at least the next 10+ years
 
 ##<a name="fromScratch"></a>Starting from Scratch
 
 #### Installing Git
 * Where to get installation files
-* How do set the Git proxy in case you want to access the external Github repository (Not needed for the internal Enterprise installation):
+```
+https://git-scm.com
+https://desktop.github.com/
+```
+* How do I setup Git in Eclipse, Netbeans or IntelliJ
+```
+... TODO ...
+```
+* How do set the Git proxy in case you want to access an external Github repository (Not needed for the internal Enterprise installation):
 ```
 git config --global http.proxy http://webproxy.deutsche-boerse.de:8080
 ```
@@ -263,6 +271,38 @@ Last but not least, if a branch is no longer needed, you can delete it via the w
 
 <img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/pull_love_4.png" width="300">
 
+##<a name="migrationNotes"></a>Migration Notes
+* All old/existing code will remain on Clearcase for at least another ten years. This way you can always go back to check what exactly happened before the migration.
+* Before your first EEPR, give CFM a heads up as they need to adapt their scripts. This will take a few days.
+* There is a script that helps you migrating Clearcase VOBs to Github Repositories
+* You need to adapt your Jenkins to fetch the code from the new locations. For this you need to use the following plugins installed on Jenkins
+ * GitClientPlugin
+ * GitPlugin
+ * Github API Plugin
+* You will also need a technical user for Jenkins as well as other administrative tasks. Otherwise somebody from the team will have to use his personal account to do the initial migration etc.. In which case, Jenkins would also use these credentials...
+* How to migrate in a nutshell *(assuming you want to migrate the old Clearcase VOB called WebApplicationVob to the new Github Repo called WebApplicationRepo)*
+```bash
+# First, create a new empty reposity called WebApplicationRepo using GitHub
+# Copy the repository URL as we need it later. It will end in .git and can be retieved using the clone button
+# Normally, all repositories have already been created for us and we just need to populate them with our files
+
+# Change into the command line and type
+mkdir WebApplicationRepo
+cd WebApplicationRepo
+git init
+
+# Copy everything you want to migrate into the newly initialized repository
+cp -rf ../WebApplicationRepo .
+git add .
+git commit -a - m "initial commit"
+
+# Set the remote location using the URL from the webgui
+git remote add https://github.com/davesade/WebApplicationRepo.git
+
+# push to the origin and you are done!
+git push -a origin master
+```
+
 ##<a name="literature"></a>Important Literature
-* https://www.atlassian.com/git/tutorials/what-is-git __(For every topic covered here, a more detailed explanation can be found here)__
-* https://www.atlassian.com/git/tutorials/comparing-workflows/ __(Really recommanded!)__
+* https://www.atlassian.com/git/tutorials/what-is-git *(For every topic covered above, additional explanation can be found here)*
+* https://www.atlassian.com/git/tutorials/comparing-workflows/ *(Really recommanded!)*
