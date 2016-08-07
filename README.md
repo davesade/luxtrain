@@ -46,7 +46,7 @@ https://desktop.github.com/
 </td>
 </tr>
 <tr>
-<td> Click under the '+' icon. Select Giit as VCS.</td>
+<td> Click under the '+' icon. Select Git as VCS.</td>
 </tr>
 </table>
 
