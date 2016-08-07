@@ -34,6 +34,8 @@ https://desktop.github.com/
 <table>
 <tr> 
 <td> <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500px"/> </td>
+</tr>
+<tr>
 <td> Go to Preferences, then Version Control </td>
 </tr>
 </table>
@@ -42,6 +44,8 @@ https://desktop.github.com/
 <tr> 
 <td> <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/preferences_version_control_add.png" width="500px"/>
 </td>
+</tr>
+<tr>
 <td> Click under the '+' icon. Select Giit as VCS.</td>
 </tr>
 </table>
@@ -49,6 +53,8 @@ https://desktop.github.com/
 <table> 
 <tr> 
 <td> <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500px"/> </td>
+</tr>
+<tr>
 <td> Click OK </td>
 </tr>
 </table>
