@@ -31,9 +31,20 @@ https://git-scm.com
 https://desktop.github.com/
 ```
 * How do I setup Git in Eclipse, Netbeans or IntelliJ
- <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500"/>
- <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/preferences_version_control_add.png" width="500"/>
- <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500"/>
+<figure>
+    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500"/>
+    <figcaption>Go to Preferences, then Version Control</figcaption>
+</figure>
+
+<figure>
+    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/preferences_version_control_add.png" width="500"/>
+    <figcaption>Click under the '+' icon. Select Giit as VCS.</figcaption>
+</figure>
+
+<figure>
+    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500"/>
+    <figcaption>Click OK</figcaption>
+</figure>
 
 * How do set the Git proxy in case you want to access an external Github repository (Not needed for the internal Enterprise installation):
 ```
