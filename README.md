@@ -31,9 +31,10 @@ https://git-scm.com
 https://desktop.github.com/
 ```
 * How do I setup Git in Eclipse, Netbeans or IntelliJ
-```
-... TODO ...
-```
+<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/preferences_version_control.png" width="300">
+<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/preferences_version_control_add.png" width="300">
+<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/git_integration_done.png" width="300">
+
 * How do set the Git proxy in case you want to access an external Github repository (Not needed for the internal Enterprise installation):
 ```
 git config --global http.proxy http://webproxy.deutsche-boerse.de:8080
