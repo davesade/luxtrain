@@ -31,20 +31,27 @@ https://git-scm.com
 https://desktop.github.com/
 ```
 * How do I setup Git in Eclipse, Netbeans or IntelliJ
-<figure>
-    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500px"/>
-    <figcaption>Go to Preferences, then Version Control</figcaption>
-</figure>
+<table>
+<tr> 
+<td> <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500px"/> </td>
+<td> Go to Preferences, then Version Control </td>
+</tr>
+</table>
 
-<figure>
-    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/preferences_version_control_add.png" width="500px"/>
-    <figcaption>Click under the '+' icon. Select Giit as VCS.</figcaption>
-</figure>
+<table> 
+<tr> 
+<td> <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/preferences_version_control_add.png" width="500px"/>
+</td>
+<td> Click under the '+' icon. Select Giit as VCS.</td>
+</tr>
+</table>
 
-<figure>
-    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500px"/>
-    <figcaption>Click OK</figcaption>
-</figure>
+<table> 
+<tr> 
+<td> <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500px"/> </td>
+<td> Click OK </td>
+</tr>
+</table>
 
 * How do set the Git proxy in case you want to access an external Github repository (Not needed for the internal Enterprise installation):
 ```
