@@ -32,17 +32,17 @@ https://desktop.github.com/
 ```
 * How do I setup Git in Eclipse, Netbeans or IntelliJ
 <figure>
-    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500"/>
+    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500px" height="500px"/>
     <figcaption>Go to Preferences, then Version Control</figcaption>
 </figure>
 
 <figure>
-    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/preferences_version_control_add.png" width="500"/>
+    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/preferences_version_control_add.png" width="500px" height="500px"/>
     <figcaption>Click under the '+' icon. Select Giit as VCS.</figcaption>
 </figure>
 
 <figure>
-    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500"/>
+    <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500px" height="500px"/>
     <figcaption>Click OK</figcaption>
 </figure>
 
