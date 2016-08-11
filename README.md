@@ -14,13 +14,14 @@ Training instructions for GitHub (Enterprise)
 ##<a name="gitOverview"></a>Git Overview
 
 * Git in a nutshell
- * Explain Master/Origin
- * <img src="screenshots/centr-decentr.png" width="300">
+ * Explain Remote/Origin
+At normal circumstances, even when you work remotely and disconnected from main server, you always work with complete repository. All changes in the code has to be pushed to origin server (and usually there is only one origin) and in case you need to update your local repository, you have to pull (or fetch + merge / rebase) from origin. To avoid potential conflicts while pushing or pulling, it is advised to have developer's branch created. Conflict are going to be solved when merging branches later in the process (see [Pull Requests](#pullRequests).
+![](screenshots/centr-decentr.png)
  * Explain difference between REL and DEV organization
- * Right now, on REL repositories for all projects already exist, but are empty. These empty repositories are then forked to dev where they have to be populated with the files from your Clearcase LATEST branch. Once this is done, you can push the files to the DEV. With the next EPR, the code is then copied (pulled) to REL.
-* Show branching example and why it is useful
- * <img src="https://github.com/jeromewagener/luxtrain/blob/master/diagrams/branching.png" width="300"> 
-* Gitflow-Workflow
+**REL** organisation is handled only by SCM/CFM and it should contain only **production code**. At the beginning, empty repositories were created and forked into **DEV** organisation. Teams of developers are having write access into their repositories, however by default, read access is allowed for every member of DEV organisation, allowing to search, comment, fork and contribute virtually to any project. At the beginning, empty repositories were created in REL organisation and then forked to DEV, allowing simple pull request to receive right version of source code for further processing. Developers pushed their latest and release branches from Clearcase to previuosly mentioned forks in DEV organistaion and commiting their work to GitHub only since.
+ * Branching ala Gitflow workflow
+There are many ways of work organisation, so we took inspiration from existing workflows. There are no limits, each team might prefer different approach and it is fine to do stuff your way.
+ ![](diagrams/gitflow.png)
 
 ##<a name="fromScratch"></a>Starting from Scratch
 
@@ -31,35 +32,17 @@ https://git-scm.com
 https://desktop.github.com/
 ```
 * How do I setup Git in Eclipse, Netbeans or IntelliJ
-<table>
-<tr> 
-<td> <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500px"/> </td>
-</tr>
-<tr>
-<td> Go to Preferences, then Version Control </td>
-</tr>
-</table>
 
-<table> 
-<tr> 
-<td> <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/preferences_version_control_add.png" width="500px"/>
-</td>
-</tr>
-<tr>
-<td> Click under the '+' icon. Select Git as VCS.</td>
-</tr>
-</table>
+![](screenshots/intellij_integration/git_integration_done.png)
+Go to Preferences, then Version Control
 
-<table> 
-<tr> 
-<td> <img src="https://github.com/jeromewagener/luxtrain/blob/intellij/screenshots/intellij_integration/git_integration_done.png" width="500px"/> </td>
-</tr>
-<tr>
-<td> Click OK </td>
-</tr>
-</table>
+![](screenshots/intellij_integration/preferences_version_control_add.png)
+Click under the '+' icon. Select Git as VCS.
 
-* How do set the Git proxy in case you want to access an external Github repository (Not needed for the internal Enterprise installation):
+![](screenshots/intellij_integration/git_integration_done.png)
+Click OK
+
+* How do set the Git proxy in case you want to access an external GitHub repository (Not needed for the internal Enterprise installation):
 ```
 git config --global http.proxy http://webproxy.deutsche-boerse.de:8080
 ```
@@ -70,7 +53,8 @@ There are a few ways how to start with Git and we will first have a look at the 
 ```
 mkdir luxtrain
 cd luxtrain
-git init -> Initialized empty Git repository in /luxtrain/.git/
+git init
+Initialized empty Git repository in /luxtrain/.git/
 ```
 #### Create a new document
 Now we have to create some content, let's have simple TXT file.
@@ -282,12 +266,12 @@ git push origin love
 ```
 Now have a look at your repository via web browser, you will notice a new button for raising pull request. 
 
-<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/pull_love.png" width="300">
+![](/screenshots/pull_love.png)
 
 Select **master** as a base and compare it with **love**. GitHub will show you differences and allows you to write a comment and start discussion.
 
-<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/pull_love_2.png" width="300">
-<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/pull_love_3.png" width="300">
+![](screenshots/pull_love_2.png)
+![](screenshots/pull_love_3.png)
 
 >**IMPORTANT:** Pull requests in GitHub should be close to an actual discussion about the changes you would like to merge. Use this opportunity to ask colleagues for opinions, help or review. Use @mentions to reach other people from totally different projects in order to have them contributing into your work. Use #numbers to relate your changes to existing GitHub issues. Consider this as cultural thing, to show your work publicly and to share and exchange ideas. Obviously there might be smaller teams, which are going to commit directly to the master branch or maybe they will merge their own pull requests in case of minor changes.
 >**IMPORTANT:** While Git does offer a pull request command as well, it serves merely as a check for potential merges. It is simply not possible to raise pull request for GitHub via the command line interface of Git. Pull requests are a dedicated feature of GitHub, where you have to use the webgui.
@@ -296,7 +280,7 @@ There might be situation to refuse the pull request. Simply click on the **close
 
 Last but not least, if a branch is no longer needed, you can delete it via the webgui or the command line.
 
-<img src="https://github.com/jeromewagener/luxtrain/blob/master/screenshots/pull_love_4.png" width="500">
+![](screenshots/pull_love_4.png)
 
 ##<a name="migrationNotes"></a>Migration Notes
 * All old/existing code will remain on Clearcase for at least another ten years. This way you can always go back to check what exactly happened before the migration.
