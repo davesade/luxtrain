@@ -1,53 +1,107 @@
 Training instructions for GitHub (Enterprise)
 ===========================
 
-##Contents:
+#Contents:
 * [Git Overview](#gitOverview)
-* [Starting from Scratch](#fromScratch)
+* [Installation](#instasllation)
 * [Starting from existing repository on a server](#startingWithExisting)
+* [Starting from scratch](#fromScratch)
 * [Branching](#branching)
 * [Tagging](#tagging)
 * [Pull Requests](#pullRequests)
+* [Forks](#forks)
 * [Migration Notes](#migrationNotes)
 * [Important Literature](#literature)
 
 ##<a name="gitOverview"></a>Git Overview
 
-* Git in a nutshell
- * Explain Remote/Origin
+### Git in a nutshell
+
+#### Working remotely with origin server
+ 
 At normal circumstances, even when you work remotely and disconnected from main server, you always work with complete repository. All changes in the code has to be pushed to origin server (and usually there is only one origin) and in case you need to update your local repository, you have to pull (or fetch + merge / rebase) from origin. To avoid potential conflicts while pushing or pulling, it is advised to have developer's branch created. Conflict are going to be solved when merging branches later in the process (see [Pull Requests](#pullRequests).
+
 ![](screenshots/centr-decentr.png)
- * Explain difference between REL and DEV organization
+
+#### Difference between REL and DEV organization
+ 
 **REL** organisation is handled only by SCM/CFM and it should contain only **production code**. At the beginning, empty repositories were created and forked into **DEV** organisation. Teams of developers are having write access into their repositories, however by default, read access is allowed for every member of DEV organisation, allowing to search, comment, fork and contribute virtually to any project. At the beginning, empty repositories were created in REL organisation and then forked to DEV, allowing simple pull request to receive right version of source code for further processing. Developers pushed their latest and release branches from Clearcase to previuosly mentioned forks in DEV organistaion and commiting their work to GitHub only since.
- * Branching ala Gitflow workflow
+
+#### Branching ala Gitflow workflow
+ 
 There are many ways of work organisation, so we took inspiration from existing workflows. There are no limits, each team might prefer different approach and it is fine to do stuff your way.
+
  ![](diagrams/gitflow.png)
 
-##<a name="fromScratch"></a>Starting from Scratch
+##<a name="installation"></a>Installation
 
-#### Installing Git
-* Where to get installation files
+### Where to get installation files
 ```
 https://git-scm.com
 https://desktop.github.com/
 ```
-* How do I setup Git in Eclipse, Netbeans or IntelliJ
+### How do I setup Git in Eclipse, Netbeans or IntelliJ
 
 ![](screenshots/intellij_integration/git_integration_done.png)
+
 Go to Preferences, then Version Control
 
 ![](screenshots/intellij_integration/preferences_version_control_add.png)
+
 Click under the '+' icon. Select Git as VCS.
 
 ![](screenshots/intellij_integration/git_integration_done.png)
+
 Click OK
 
-* How do set the Git proxy in case you want to access an external GitHub repository (Not needed for the internal Enterprise installation):
+### How do set the Git proxy in case you want to access an external GitHub repository (Not needed for the internal Enterprise installation):
 ```
-git config --global http.proxy http://webproxy.deutsche-boerse.de:8080
+git config --global http.proxy proxy_url
 ```
 
-#### Create a new folder
+##<a name="startingWithExisting"></a>Starting from existing repository on a server
+###Clone
+This will be probably most common practice for most of us. You would like to start contributing to existing project. Cloning repository will create local copy on your workspace, however your origin is still on main server.
+
+With Git, you **ALWAYS** work with a complete repository, even on your local PC! That's why it's called **distributed version control system**. There is usually a single point/place - main server - where the project is being located. This main server is then shared between many developers which push their contributions to this remote origin. In short: The easiest way to start contributing to an existing project is to **clone** it from a server. Let's do it right now!
+```
+git clone https://github.com/davesade/luxtrain
+Cloning into 'luxtrain'...
+remote: Counting objects: 37, done.
+remote: Compressing objects: 100% (31/31), done.
+remote: Total 37 (delta 4), reused 20 (delta 1), pack-reused 0
+Unpacking objects: 100% (37/37), done.
+Checking connectivity... done.
+```
+As you can see, this command created a folder and fetched all necessary data. This includes the complete repository, all files, all branches and all tags.
+
+###Pull, Fetch, Merge, Rebase
+If you would like to receive all changes since your last pull from origin server, you can choose from one of few good ways.
+```
+git pull origin master
+```
+Pull will update your local Git index and also download all new data, commit history and automatically merge changes where possible. This makes sense in moments, when you work on your own branch, so you do not expect any conflicts.
+
+Sometimes, you don"t want to do automatic merge, so you would like to only update your local index and then choose, what to merge.
+```
+git fetch
+```
+You can now simply merge all.
+```
+git merge
+```
+Or you can choose, which branch exactly from origin server you want to merge with your local repository.
+```
+git merge origin/master
+```
+After a merge, you might want to rebase your branch, to align with newest version of remote branch you started from (base).
+```
+git rebase origin/master
+```
+
+##<a name="fromScratch"></a>Starting from scratch
+
+### Create a new folder
 There are a few ways how to start with Git and we will first have a look at the simplest possible example. In fact, we would like to start with brand new merely empty repository locally on your PC where Git is installed. Let's move to safe area, where we can prepare a folder for our new repository.
 
 ```
@@ -90,7 +144,7 @@ Last thing to do is actually to push our changes. That follow this syntax:
 ```
 git push [remote] [branch]
 ```
-Branch? What is a branch? It is an important part of your development strategy and we will talk about it later. To make it simple now, let's continue. In case you are not sure, you can simply list all branches in your repository. By default, you should see a master branch.
+Branching is important part of your development strategy and we will talk about it later. In case you are not sure, you can simply list all branches in your repository. By default, you should see a master branch.
 ```
 git branch
 *master
@@ -99,7 +153,6 @@ Asterix indicates your current branch. In case you have too many branches to loo
 ```
 git status
 On branch master
-nothing to commit, working directory clean
 ```
 Alright, so finally now we can push our work to the server!
 ```
@@ -114,63 +167,8 @@ To https://github.com/davesade/luxtrain
 ```
 **Congratulations**, you just pushed your first commit!
 
-###<a name="startingWithExisting"></a>Starting from existing repository on a server
-
-With Git, you **ALWAYS** work with a complete repository, even on your local PC! That's why it's called **distributed version control system**. There is usually a single point/place - main server - where the project is being located. This main server is then shared between many developers which push their contributions to this remote origin. In short: The easiest way to start contributing to an existing project is to **clone** it from a server. Let's do it right now!
-```
-git clone https://github.com/davesade/luxtrain
-Cloning into 'luxtrain'...
-remote: Counting objects: 37, done.
-remote: Compressing objects: 100% (31/31), done.
-remote: Total 37 (delta 4), reused 20 (delta 1), pack-reused 0
-Unpacking objects: 100% (37/37), done.
-Checking connectivity... done.
-```
-As you can see, this command created a folder and fetched all necessary data. This includes the complete repository, all files, all branches and all tags.
-
-Alternatively, you could do a **fetch** from the remote repository. This implies that you will add a remote origin manually, which might be useful in case you work with multiple servers (ie. GitHub and HerokuGit). The **origin** is usually single common place shared by all developers in the team, where they contribute to.
-
-```
-mkdir luxtrain
-cd luxtrain
-git init
-git add remote origin https://github.com/davesade/luxtrain
-git fetch
-remote: Counting objects: 12, done.
-remote: Compressing objects: 100% (8/8), done.
-remote: Total 12 (delta 0), reused 6 (delta 0), pack-reused 0
-Unpacking objects: 100% (12/12), done.
-From https://github.com/davesade/luxtrain
- * [new branch]      master     -> origin/master
-```
-Last but not least, we could simply **pull** from a remote repository. The difference is, that this will not only **fetch** as in the example above, but also it also does a **merge** with your current folder. Depending on what you want, this might be better in some cases.
-
-```
-mkdir luxtrain
-cd luxtrain
-git init
-git remote add origin https://github.com/davesade/luxtrain
-git pull
-remote: Counting objects: 12, done.
-remote: Compressing objects: 100% (8/8), done.
-remote: Total 12 (delta 0), reused 6 (delta 0), pack-reused 0
-Unpacking objects: 100% (12/12), done.
-From https://www.github.com/davesade/luxtrain
- * [new branch]      master     -> origin/master
-There is no tracking information for the current branch.
-Please specify which branch you want to merge with.
-See git-pull(1) for details.
-
-    git pull <remote> <branch>
-
-If you wish to set tracking information for this branch you can do so with:
-
-    git branch --set-upstream-to=origin/<branch> master
-```
-But generally speaking, **clone** will cover most of your use cases.
-
 ##<a name="branching"></a>Branching
-####Basics
+###Basics
 With branches, you can organise your work in case you have to synchronise with more colleagues that are contributing to the same project. You can create new branch at any time by typing:
 ```
 git branch love
@@ -201,14 +199,20 @@ git add .
 git commit -m "Second commit"
 git push origin love
 ```
-Each team should come up with its own strategy on branching. In case you would like to delete a branch __(after you pushed your changes to origin server)__, you can type:
+Each team should come up with its own strategy on branching. In case you would like to delete a branch (perhaps after you pushed your changes to origin server), you can type:
 ```
 git branch love -d
 ```
+You can also delete branch on remote origin.
+```
+git push --delete origin [branch name]
+```
+In any case, when using Pull Requests on GitHub webpage, you will have opportunity to delete a branch after successfull merge. 
+
 ##<a name="tagging"></a>Taging
 Now we know how to start working in our local repository, how to do branching and how to push our branches to main server. At one point of time, we would like to ask CFM to actually pick our work and send it to the pipeline for further testing and deployment, up to production. To do that, you have to provide a **tag**, which is the equivalent of a **label** in Clearcase. To add a new tag, type the following command:
 ```
-git tag -a v.0.2 -m "Please test this in production"
+git tag v.0.2 -m "Please test this in production"
 ```
 Tag message is not mandatory, but it could help. Now you can look for this information, for example:
 ```
@@ -227,9 +231,8 @@ Author: David Kubec <davesade.42@gmail.co,m>
 Date:   Mon Aug 1 23:22:47 2016 +0200
 
     OKMerge branch 'love' of https://www.github.com/davesade/luxtrain into love
-
 ```
-In case you would like to add a lightweight tag, you can skip the **-a** parameter. You can still add a tag message.
+In case you would like to add a annotaion tag, you can add the **-a** parameter. You can still add a tag message.
 
 >**IMPORTANT:** Tags are NOT pushed to origin server by pushing the branch.
 
@@ -253,11 +256,11 @@ And if you need to remove a tag from remote origin, type this:
 ```
 git push --delete origin [tag_name]
 ```
-Now you are ready to raise your **EEPR** in Amadeus. CFM expects a **tag** indicating an unchangable point in time (revision) for their pipeline.
+Now you are ready to raise your **EEPR** in Amadeus. CFM expects a **tag** indicating an unchangeable point in time (revision) for their pipeline. You can simply mention tag in the comment of EEPR.
 
 ##<a name="pullRequests"></a>Pull requests
 
-####Raising new pull request
+###Raising new pull request
 It is not uncommon that bigger teams have to organise their contributions using multiple branches. Before taging the final product to be sent down the pipeline, teams have to merge all changes from all relevant branches. To have an overview and control over the merge process, it is usual to have a main coordinator (e.g. head of team) which is responsible for merging all the code while the developer might be responsible for fixing the conflict. From developer perspective, this is best to be done by raising a pull request. This way developer the says: "My work is done, everything is on the server, please merge it into master or main feature branch".
 
 Let's assume, that we just pushed the **love** branch to main server.
@@ -266,7 +269,7 @@ git push origin love
 ```
 Now have a look at your repository via web browser, you will notice a new button for raising pull request. 
 
-![](/screenshots/pull_love.png)
+![](screenshots/pull_love.png)
 
 Select **master** as a base and compare it with **love**. GitHub will show you differences and allows you to write a comment and start discussion.
 
@@ -274,6 +277,7 @@ Select **master** as a base and compare it with **love**. GitHub will show you d
 ![](screenshots/pull_love_3.png)
 
 >**IMPORTANT:** Pull requests in GitHub should be close to an actual discussion about the changes you would like to merge. Use this opportunity to ask colleagues for opinions, help or review. Use @mentions to reach other people from totally different projects in order to have them contributing into your work. Use #numbers to relate your changes to existing GitHub issues. Consider this as cultural thing, to show your work publicly and to share and exchange ideas. Obviously there might be smaller teams, which are going to commit directly to the master branch or maybe they will merge their own pull requests in case of minor changes.
+
 >**IMPORTANT:** While Git does offer a pull request command as well, it serves merely as a check for potential merges. It is simply not possible to raise pull request for GitHub via the command line interface of Git. Pull requests are a dedicated feature of GitHub, where you have to use the webgui.
 
 There might be situation to refuse the pull request. Simply click on the **close** button in these cases.
@@ -281,6 +285,12 @@ There might be situation to refuse the pull request. Simply click on the **close
 Last but not least, if a branch is no longer needed, you can delete it via the webgui or the command line.
 
 ![](screenshots/pull_love_4.png)
+
+##<a name="forks"></a>Forks (slightly advanced, but still recommended)
+You can consider forking as very powerfull method of parallel evelopment, which is recommended as advanced technique. In a nutshell, it is like creating "branches of repositories". In case you have access to selected repository, you can create your own branch and work as usuall. But it also means, that for each merge you have to raise a pull  request and wait for approval (in case you lack privileges). Nothing wrong with that. But in case, you don't have access to repository or   in case you would like to start brand new development based on existing repository, then you can create a fork. Forked repository   then moves to new URL (typically your own namespace on GitHub) and then you can do whatewer you want. Later on, you can raise a pull   request, exactly the same way, as in case of merge of branches - in reality you are merging two branches from two different repositories, which are linked with the fork.
+>**IMPORTANT** Inside forked repository, you have admin access, so you can not only do merge of any branches, but also to delete it. It will not affect original repository, until you raise a pull request.
+
+![](screenshots/forks.png)
 
 ##<a name="migrationNotes"></a>Migration Notes
 * All old/existing code will remain on Clearcase for at least another ten years. This way you can always go back to check what exactly happened before the migration.
@@ -292,7 +302,8 @@ Last but not least, if a branch is no longer needed, you can delete it via the w
  * Github API Plugin
 * You will also need a technical user for Jenkins as well as other administrative tasks. Otherwise somebody from the team will have to use his personal account to do the initial migration etc.. In which case, Jenkins would also use these credentials...
 * How to migrate in a nutshell *(assuming you want to migrate the old Clearcase VOB called WebApplicationVob to the new Github Repo called WebApplicationRepo)*
-```bash
+```
+bash
 # First, create a new empty reposity called WebApplicationRepo using GitHub
 # Copy the repository URL as we need it later. It will end in .git and can be retieved using the clone button
 # Normally, all repositories have already been created for us and we just need to populate them with our files
