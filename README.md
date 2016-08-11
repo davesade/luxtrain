@@ -231,7 +231,7 @@ Date:   Mon Aug 1 23:22:47 2016 +0200
 ```
 In case you would like to add a lightweight tag, you can skip the **-a** parameter. You can still add a tag message.
 
->**IMPORTANT:** Tags are NOT pushed to origin server by default!
+>**IMPORTANT:** Tags are NOT pushed to origin server by pushing the branch.
 
 You have to push to origin with name of the tag, instead of branch name.
 ```
