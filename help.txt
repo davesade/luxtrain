@@ -9,5 +9,11 @@ TEST TAG 1
 
 first commit
 second commit
+<<<<<<< HEAD
 commit from 789 branch
 another commit on 789
+=======
+third commit
+fourth commit
+
+>>>>>>> 123
