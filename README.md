@@ -3,7 +3,7 @@ Training instructions for GitHub (Enterprise)
 
 #Contents:
 * [Git Overview](#gitOverview)
-* [Installation](#instasllation)
+* [Installation](#installation)
 * [Starting from existing repository on a server](#startingWithExisting)
 * [Starting from scratch](#fromScratch)
 * [Branching](#branching)
