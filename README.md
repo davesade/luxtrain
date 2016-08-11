@@ -15,7 +15,7 @@ Training instructions for GitHub (Enterprise)
 
 * Git in a nutshell
  * Explain Master/Origin
- * <img src="https://github.com/jeromewagener/luxtrain/blob/master/diagrams/OriginRemote.png" width="300">
+ * <img src="screenshots/centr-decentr.png" width="300">
  * Explain difference between REL and DEV organization
  * Right now, on REL repositories for all projects already exist, but are empty. These empty repositories are then forked to dev where they have to be populated with the files from your Clearcase LATEST branch. Once this is done, you can push the files to the DEV. With the next EPR, the code is then copied (pulled) to REL.
 * Show branching example and why it is useful
